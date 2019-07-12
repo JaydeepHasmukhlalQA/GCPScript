@@ -7,7 +7,7 @@ variable "name" {
   default = {
     "poolui"          = "poolui"
     "poolapi"         = "poolapi"
-    "poolapi_mongodb" = "poolapi_mongodb"
+    "poolapi_mongodb" = "poolapimongodb"
   }
 }
 
@@ -84,7 +84,7 @@ variable "scripts" {
   default = {
     "poolui"          = ["scripts/poolui.sh"]
     "poolapi"         = ["scripts/poolapi.sh"]
-    "poolapi_mongodb" = [""]
+    "poolapi_mongodb" = ["scripts/poolapi_mongodb.sh"]
   }
 }
 

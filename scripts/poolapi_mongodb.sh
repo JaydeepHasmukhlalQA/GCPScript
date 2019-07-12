@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo clone https://github.com/JaydeepHasmukhlalQA/Pool_API_MongoDB_Automate.git
+sudo git clone https://github.com/JaydeepHasmukhlalQA/Pool_API_MongoDB_Automate.git
 cd Pool_API_MongoDB_Automate
 sudo ./install.sh
