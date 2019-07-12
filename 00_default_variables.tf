@@ -5,8 +5,9 @@ variable "project" {
 variable "name" {
   type = "map"
   default = {
-    "poolui"  = "poolui"
-    "poolapi" = "poolapi"
+    "poolui"          = "poolui"
+    "poolapi"         = "poolapi"
+    "poolapi_mongodb" = "poolapi_mongodb"
   }
 }
 
@@ -40,8 +41,9 @@ variable "network" {
 variable "ssh_user" {
   type = "map"
   default = {
-    "poolui"  = "poolui"
-    "poolapi" = "poolapi"
+    "poolui"          = "poolui"
+    "poolapi"         = "poolapi"
+    "poolapi_mongodb" = "poolapi_mongodb"
   }
 }
 
@@ -79,7 +81,11 @@ variable "packages" {
 }
 
 variable "scripts" {
-  default = ["scripts/poolui.sh"]
+  default = {
+    "poolui"          = ["scripts/poolui.sh"]
+    "poolapi"         = ["scripts/poolapi.sh"]
+    "poolapi_mongodb" = [""]
+  }
 }
 
 variable "poolui_allowed_ports" {
@@ -88,6 +94,10 @@ variable "poolui_allowed_ports" {
 
 variable "poolapi_allowed_ports" {
   default = ["22", "8080"]
+}
+
+variable "poolapi_mongodb_allowed_ports" {
+  default = ["22", "27017"]
 }
 
 locals {

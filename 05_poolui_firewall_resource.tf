@@ -1,4 +1,4 @@
-resource "google_compute_firewall" "default" {
+resource "google_compute_firewall" "poolui_firewall" {
   name          = "${var.name["poolui"]}-firewall"
   network       = "${var.network}"
   target_tags   = ["${var.name["poolui"]}"]

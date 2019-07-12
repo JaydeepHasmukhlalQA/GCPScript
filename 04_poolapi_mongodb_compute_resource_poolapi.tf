@@ -1,8 +1,8 @@
-resource "google_compute_instance" "default" {
-  name         = "${var.name["poolui"]}-${local.timestamp_sanitized}"
+resource "google_compute_instance" "poolapi_mongodb_compute" {
+  name         = "${var.name["poolapi_mongodb"]}-${local.timestamp_sanitized}"
   machine_type = "${var.machine_type["standard2"]}"
   zone         = "${var.zone}"
-  tags         = ["${var.name["poolui"]}"]
+  tags         = ["${var.name["poolapi_mongodb"]}"]
   boot_disk {
     initialize_params {
       image = "${var.image["ubuntu_1804_lts"]}"
@@ -15,12 +15,12 @@ resource "google_compute_instance" "default" {
     }
   }
   metadata = {
-    sshKeys = "${var.ssh_user["poolui"]}:${file("${var.public_key}")}"
+    sshKeys = "${var.ssh_user["poolapi_mongodb"]}:${file("${var.public_key}")}"
   }
   connection {
     type        = "ssh"
-    user        = "${var.ssh_user["poolui"]}"
-    host        = "${google_compute_instance.default.network_interface.0.access_config.0.nat_ip}"
+    user        = "${var.ssh_user["poolapi_mongodb"]}"
+    host        = "${google_compute_instance.poolapi_mongodb_compute.network_interface.0.access_config.0.nat_ip}"
     private_key = "${file("${var.private_key}")}"
   }
   provisioner "remote-exec" {
@@ -30,6 +30,6 @@ resource "google_compute_instance" "default" {
     ]
   }
   provisioner "remote-exec" {
-    scripts = "${var.scripts}"
+    scripts = "${var.scripts["poolapi_mongodb"]}"
   }
 }
